@@ -1,70 +1,22 @@
 <template>
-  <el-table
-      ref="multipleTableRef"
-      :data="tableData"
-      style="width: 100%"
-      @selection-change="handleSelectionChange"
-  >
-    <el-table-column type="selection" width="55" />
-    <el-table-column label="Date" width="120">
-      <template #default="scope">{{ scope.row.date }}</template>
-    </el-table-column>
-    <el-table-column prop="name" label="Name" width="120" />
-    <el-table-column prop="address" label="Address" show-overflow-tooltip @click="handleClick()" />
-  </el-table>
-  <div style="margin-top: 20px">
-    <el-button @click="toggleSelection([tableData[1], tableData[2]])"
-    >Toggle selection status of second and third rows</el-button
-    >
-    <el-button @click="toggleSelection()">Clear selection</el-button>
-  </div>
+<div @mousemove="onMousemove" class="movearea" :style="{ backgroundColor: `hsl(${x}, 80%, 50%,0.8)` }">
+    <p>Move your mouse across this div...</p>
+    <div>aaa</div>
+    <p>x: {{ x }}</p>
+</div>
 </template>
 <script setup>
-import { ref } from 'vue'
-import { ElTable } from 'element-plus'
+import {ref} from "vue";
 
-const handleSelectionChange=(e,f)=>{
-  console.log(e,f)
+const x = ref(0)
+const onMousemove =(e) =>{
+    console.log(e)
+    x.value = e.clientX
+}
+</script>
+<style>
+.movearea{
+    transition:background-color 0.3s ease-in-out;
 }
 
-const multipleTableRef = ref()
-
-
-const tableData =[
-{
-date: '2016-05-03',
-name: 'Tom',
-address: 'No. 189, Grove St, Los Angeles',
-},
-{
-date: '2016-05-02',
-name: 'Tom',
-address: 'No. 189, Grove St, Los Angeles',
-},
-{
-date: '2016-05-04',
-name: 'Tom',
-address: 'No. 189, Grove St, Los Angeles',
-},
-{
-date: '2016-05-01',
-name: 'Tom',
-address: 'No. 189, Grove St, Los Angeles',
-},
-{
-date: '2016-05-08',
-name: 'Tom',
-address: 'No. 189, Grove St, Los Angeles',
-},
-{
-date: '2016-05-06',
-name: 'Tom',
-address: 'No. 189, Grove St, Los Angeles',
-},
-{
-date: '2016-05-07',
-name: 'Tom',
-address: 'No. 189, Grove St, Los Angeles',
-},
-]
-</script>
+</style>
