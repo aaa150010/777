@@ -1,6 +1,7 @@
 <template>
 <div @mousemove="onMousemove" class="movearea" :style="{ backgroundColor: `hsl(${x}, 80%, 50%,0.8)` }">
     <p>Move your mouse across this div...</p>
+    <div>aaa</div>
     <p>x: {{ x }}</p>
 </div>
 </template>
@@ -17,4 +18,5 @@ const onMousemove =(e) =>{
 .movearea{
     transition:background-color 0.3s ease-in-out;
 }
+
 </style>
